@@ -90,6 +90,8 @@ class Registro extends CI_Controller {
                 echo "ya esta registrado";
                 return;
                 }
+            $this->form_validation->set_rules('password','Contraseña','required|matches[vpassword]');
+            if ($this->form_validation->run()){
 
 
             $data = array(
@@ -103,9 +105,14 @@ class Registro extends CI_Controller {
                 'rol'=> $this-> input->post('rol'),
                 );
             $this->registro_model->crearregistro($data);
-            $this->load->view('registro/headers');
+            
+        }
+        $this->load->view('registro/headers');
             $this->load->view('registro/vista');
+        }
 
+        function login(){
+            
         }
 
 
